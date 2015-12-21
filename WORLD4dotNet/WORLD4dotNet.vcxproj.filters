@@ -27,31 +27,31 @@
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\World\src\cheaptrick.h">
+    <ClInclude Include="WORLD\cheaptrick.h">
       <Filter>WORLD</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\World\src\common.h">
+    <ClInclude Include="WORLD\common.h">
       <Filter>WORLD</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\World\src\constantnumbers.h">
+    <ClInclude Include="WORLD\constantnumbers.h">
       <Filter>WORLD</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\World\src\d4c.h">
+    <ClInclude Include="WORLD\d4c.h">
       <Filter>WORLD</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\World\src\dio.h">
+    <ClInclude Include="WORLD\dio.h">
       <Filter>WORLD</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\World\src\fft.h">
+    <ClInclude Include="WORLD\fft.h">
       <Filter>WORLD</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\World\src\matlabfunctions.h">
+    <ClInclude Include="WORLD\matlabfunctions.h">
       <Filter>WORLD</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\World\src\stonemask.h">
+    <ClInclude Include="WORLD\stonemask.h">
       <Filter>WORLD</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\World\src\synthesis.h">
+    <ClInclude Include="WORLD\synthesis.h">
       <Filter>WORLD</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,28 +65,28 @@
     <ClCompile Include="Stdafx.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\World\src\cheaptrick.cpp">
+    <ClCompile Include="WORLD\cheaptrick.cpp">
       <Filter>WORLD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\World\src\common.cpp">
+    <ClCompile Include="WORLD\common.cpp">
       <Filter>WORLD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\World\src\d4c.cpp">
+    <ClCompile Include="WORLD\d4c.cpp">
       <Filter>WORLD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\World\src\dio.cpp">
+    <ClCompile Include="WORLD\dio.cpp">
       <Filter>WORLD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\World\src\fft.cpp">
+    <ClCompile Include="WORLD\fft.cpp">
       <Filter>WORLD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\World\src\matlabfunctions.cpp">
+    <ClCompile Include="WORLD\matlabfunctions.cpp">
       <Filter>WORLD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\World\src\stonemask.cpp">
+    <ClCompile Include="WORLD\stonemask.cpp">
       <Filter>WORLD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\World\src\synthesis.cpp">
+    <ClCompile Include="WORLD\synthesis.cpp">
       <Filter>WORLD</Filter>
     </ClCompile>
   </ItemGroup>

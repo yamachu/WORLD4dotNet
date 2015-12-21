@@ -100,7 +100,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -110,7 +110,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -120,7 +120,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -132,28 +132,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\World\src\cheaptrick.h" />
-    <ClInclude Include="..\..\World\src\common.h" />
-    <ClInclude Include="..\..\World\src\constantnumbers.h" />
-    <ClInclude Include="..\..\World\src\d4c.h" />
-    <ClInclude Include="..\..\World\src\dio.h" />
-    <ClInclude Include="..\..\World\src\fft.h" />
-    <ClInclude Include="..\..\World\src\matlabfunctions.h" />
-    <ClInclude Include="..\..\World\src\stonemask.h" />
-    <ClInclude Include="..\..\World\src\synthesis.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="WORLD4dotNet.h" />
+    <ClInclude Include="WORLD\cheaptrick.h" />
+    <ClInclude Include="WORLD\common.h" />
+    <ClInclude Include="WORLD\constantnumbers.h" />
+    <ClInclude Include="WORLD\d4c.h" />
+    <ClInclude Include="WORLD\dio.h" />
+    <ClInclude Include="WORLD\fft.h" />
+    <ClInclude Include="WORLD\matlabfunctions.h" />
+    <ClInclude Include="WORLD\stonemask.h" />
+    <ClInclude Include="WORLD\synthesis.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\World\src\cheaptrick.cpp" />
-    <ClCompile Include="..\..\World\src\common.cpp" />
-    <ClCompile Include="..\..\World\src\d4c.cpp" />
-    <ClCompile Include="..\..\World\src\dio.cpp" />
-    <ClCompile Include="..\..\World\src\fft.cpp" />
-    <ClCompile Include="..\..\World\src\matlabfunctions.cpp" />
-    <ClCompile Include="..\..\World\src\stonemask.cpp" />
-    <ClCompile Include="..\..\World\src\synthesis.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -162,6 +154,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="WORLD4dotNet.cpp" />
+    <ClCompile Include="WORLD\cheaptrick.cpp" />
+    <ClCompile Include="WORLD\common.cpp" />
+    <ClCompile Include="WORLD\d4c.cpp" />
+    <ClCompile Include="WORLD\dio.cpp" />
+    <ClCompile Include="WORLD\fft.cpp" />
+    <ClCompile Include="WORLD\matlabfunctions.cpp" />
+    <ClCompile Include="WORLD\stonemask.cpp" />
+    <ClCompile Include="WORLD\synthesis.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

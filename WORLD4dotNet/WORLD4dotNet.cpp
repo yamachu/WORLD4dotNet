@@ -9,17 +9,18 @@
 // 2D-arrays idea is here
 // http://stackoverflow.com/a/26717663
 
-void WORLD4dotNet::WORLD::CheapTrick(array<Double>^ x, int x_length, int fs, array<Double>^ time_axis, array<Double>^ f0, int f0_length, array<Byte>^ option, array<Double, 2>^ spectrogram)
+void WORLD4dotNet::Core::WORLD::CheapTrick(array<Double>^ x, int x_length, int fs,
+	array<Double>^ time_axis, array<Double>^ f0, int f0_length,
+	Options::CheapTrickOption % option, array<Double, 2>^ spectrogram)
 {
 	pin_ptr<Double> ptr_x = &x[0];
 	pin_ptr<Double> ptr_f0 = &f0[0];
 	pin_ptr<Double> ptr_time_axis = &time_axis[0];
 	pin_ptr<Double> ptr_spectrogram = &spectrogram[0, 0];
-	CheapTrickOption tmpOption;
-	pin_ptr<Byte> ptr_option = &option[0];
 
-	memcpy(&tmpOption, ptr_option, sizeof(CheapTrickOption));
-	
+	IntPtr ptr_option = Marshal::AllocHGlobal(Marshal::SizeOf(option));
+	Marshal::StructureToPtr(option, ptr_option,false);
+
 	// Cast to 2D-array
 	int dimOuter = spectrogram->GetLength(0);
 	int dimInner = spectrogram->GetLength(1);
@@ -30,41 +31,40 @@ void WORLD4dotNet::WORLD::CheapTrick(array<Double>^ x, int x_length, int fs, arr
 		ptr_spec[i] = tmpPtr;
 		tmpPtr += dimInner;
 	}
-	
-	::CheapTrick(ptr_x, x_length, fs, ptr_time_axis, ptr_f0, f0_length, &tmpOption, ptr_spec);
+
+	::CheapTrick(ptr_x, x_length, fs, ptr_time_axis, ptr_f0, f0_length, (CheapTrickOption*)ptr_option.ToPointer(), ptr_spec);
 
 	ptr_x = nullptr;
 	ptr_f0 = nullptr;
 	ptr_time_axis = nullptr;
 	ptr_spectrogram = nullptr;
-	ptr_option = nullptr;
+	Marshal::FreeHGlobal(ptr_option);
 }
 
-void WORLD4dotNet::WORLD::InitializeCheapTrickOption(array<Byte>^ option)
+void WORLD4dotNet::Core::WORLD::InitializeCheapTrickOption(Options::CheapTrickOption % option)
 {
 	CheapTrickOption tmpOption;
-	pin_ptr<Byte> ptr_option = &option[0];
-	memcpy(&tmpOption, ptr_option, sizeof(CheapTrickOption));
 	::InitializeCheapTrickOption(&tmpOption);
-	memcpy(ptr_option, &tmpOption, sizeof(CheapTrickOption));
-	ptr_option = nullptr;
+	IntPtr tmpPtr = Marshal::AllocHGlobal(Marshal::SizeOf(option));
+	option = (Options::CheapTrickOption)Marshal::PtrToStructure(IntPtr(&tmpOption), option.GetType());
 }
 
-int WORLD4dotNet::WORLD::GetFFTSizeForCheapTrick(int fs)
+int  WORLD4dotNet::Core::WORLD::GetFFTSizeForCheapTrick(int fs)
 {
 	return ::GetFFTSizeForCheapTrick(fs);
 }
 
-void WORLD4dotNet::WORLD::D4C(array<Double>^ x, int x_length, int fs, array<Double>^ time_axis, array<Double>^ f0, int f0_length, int fft_size, array<Byte>^ option, array<Double, 2>^ aperiodicity)
+void WORLD4dotNet::Core::WORLD::D4C(array<Double>^ x, int x_length, int fs, 
+	array<Double>^ time_axis, array<Double>^ f0, int f0_length, int fft_size,
+	Options::D4COption % option, array<Double, 2>^ aperiodicity)
 {
 	pin_ptr<Double> ptr_x = &x[0];
 	pin_ptr<Double> ptr_f0 = &f0[0];
 	pin_ptr<Double> ptr_time_axis = &time_axis[0];
 	pin_ptr<Double> ptr_aperiodicity = &aperiodicity[0, 0];
-	D4COption* tmpOption;
-	pin_ptr<Byte> ptr_option = &option[0];
 
-	memcpy(&tmpOption, ptr_option, sizeof(D4COption));
+	IntPtr ptr_option = Marshal::AllocHGlobal(Marshal::SizeOf(option));
+	Marshal::StructureToPtr(option, ptr_option, false);
 
 	// Cast to 2D-array
 	int dimOuter = aperiodicity->GetLength(0);
@@ -77,59 +77,56 @@ void WORLD4dotNet::WORLD::D4C(array<Double>^ x, int x_length, int fs, array<Doub
 		tmpPtr += dimInner;
 	}
 
-	::D4C(ptr_x, x_length, fs, ptr_time_axis, ptr_f0, f0_length, fft_size, tmpOption, ptr_aperi);
+	::D4C(ptr_x, x_length, fs, ptr_time_axis, ptr_f0, f0_length, fft_size, (D4COption*)ptr_option.ToPointer(), ptr_aperi);
 
 	ptr_x = nullptr;
 	ptr_f0 = nullptr;
 	ptr_time_axis = nullptr;
 	ptr_aperiodicity = nullptr;
-	ptr_option = nullptr;
+	Marshal::FreeHGlobal(ptr_option);
 }
 
-void WORLD4dotNet::WORLD::InitializeD4COption(array<Byte>^ option)
+void WORLD4dotNet::Core::WORLD::InitializeD4COption(Options::D4COption % option)
 {
 	D4COption tmpOption;
-	pin_ptr<Byte> ptr_option = &option[0];
-	memcpy(&tmpOption, ptr_option, sizeof(D4COption));
 	::InitializeD4COption(&tmpOption);
-	memcpy(ptr_option, &tmpOption, sizeof(D4COption));
-	ptr_option = nullptr;
+	IntPtr tmpPtr = Marshal::AllocHGlobal(Marshal::SizeOf(option));
+	option = (Options::D4COption)Marshal::PtrToStructure(IntPtr(&tmpOption),option.GetType());
 }
 
-void WORLD4dotNet::WORLD::Dio(array<Double>^ x, int x_length, int fs, array<Byte>^ option, array<Double>^ time_axis, array<Double>^ f0)
+void WORLD4dotNet::Core::WORLD::Dio(array<Double>^ x, int x_length, int fs,
+	Options::DioOption % option, array<Double>^ time_axis, array<Double>^ f0)
 {
 	pin_ptr<Double> ptr_x = &x[0];
 	pin_ptr<Double> ptr_time_axis = &time_axis[0];
 	pin_ptr<Double> ptr_f0 = &f0[0];
 
-	DioOption tmpOption;
-	pin_ptr<Byte> ptr_option = &option[0];
-	memcpy(&tmpOption, ptr_option, sizeof(DioOption));
+	IntPtr ptr_option = Marshal::AllocHGlobal(Marshal::SizeOf(option));
+	Marshal::StructureToPtr(option, ptr_option, false);
 
-	::Dio(ptr_x, x_length, fs, tmpOption, ptr_time_axis, ptr_f0);
+	::Dio(ptr_x, x_length, fs, *(DioOption*)ptr_option.ToPointer(), ptr_time_axis, ptr_f0);
 
 	ptr_x = nullptr;
 	ptr_time_axis = nullptr;
 	ptr_f0 = nullptr;
-	ptr_option = nullptr;
+	Marshal::FreeHGlobal(ptr_option);
 }
 
-void WORLD4dotNet::WORLD::InitializeDioOption(array<Byte>^ option)
+void WORLD4dotNet::Core::WORLD::InitializeDioOption(Options::DioOption % option)
 {
 	DioOption tmpOption;
-	pin_ptr<Byte> ptr_option = &option[0];
-	memcpy(&tmpOption, ptr_option, sizeof(DioOption));
 	::InitializeDioOption(&tmpOption);
-	memcpy(ptr_option, &tmpOption, sizeof(DioOption));
-	ptr_option = nullptr;
+	IntPtr tmpPtr = Marshal::AllocHGlobal(Marshal::SizeOf(option));
+	option = (Options::DioOption)Marshal::PtrToStructure(IntPtr(&tmpOption), option.GetType());
 }
 
-int WORLD4dotNet::WORLD::GetSamplesForDIO(int fs, int x_length, double frame_period)
+int  WORLD4dotNet::Core::WORLD::GetSamplesForDIO(int fs, int x_length, double frame_period)
 {
 	return ::GetSamplesForDIO(fs, x_length, frame_period);
 }
 
-void WORLD4dotNet::WORLD::StoneMask(array<Double>^ x, int x_length, int fs, array<Double>^ time_axis, array<Double>^ f0, int f0_length, array<Double>^ refined_f0)
+void WORLD4dotNet::Core::WORLD::StoneMask(array<Double>^ x, int x_length, int fs,
+	array<Double>^ time_axis, array<Double>^ f0, int f0_length, array<Double>^ refined_f0)
 {
 	pin_ptr<Double> ptr_x = &x[0];
 	pin_ptr<Double> ptr_f0 = &f0[0];
@@ -142,7 +139,9 @@ void WORLD4dotNet::WORLD::StoneMask(array<Double>^ x, int x_length, int fs, arra
 	ptr_refined_f0 = nullptr;
 }
 
-void WORLD4dotNet::WORLD::Synthesis(array<Double>^ f0, int f0_length, array<Double, 2>^ spectrogram, array<Double, 2>^ aperiodicity, int fft_size, double frame_period, int fs, int y_length, array<Double>^ y)
+void WORLD4dotNet::Core::WORLD::Synthesis(array<Double>^ f0, int f0_length,
+	array<Double, 2>^ spectrogram, array<Double, 2>^ aperiodicity, int fft_size,
+	double frame_period, int fs, int y_length, array<Double>^ y)
 {
 	pin_ptr<Double> ptr_f0 = &f0[0];
 	pin_ptr<Double> ptr_y = &y[0];
@@ -175,7 +174,8 @@ void WORLD4dotNet::WORLD::Synthesis(array<Double>^ f0, int f0_length, array<Doub
 	ptr_aperiodicity = nullptr;
 }
 
-void WORLD4dotNet::WORLD::WavRead(String ^ filename, int % fs, int % nbit, int % wav_length, array<Double>^% wav_form)
+void WORLD4dotNet::Utils::FileIO::WavRead(String ^ filename, int % fs, int % nbit,
+	int % wav_length, array<Double>^% wav_form)
 {
 	pin_ptr<int> ptr_fs = &fs;
 	pin_ptr<int> ptr_nbit = &nbit;
@@ -184,21 +184,38 @@ void WORLD4dotNet::WORLD::WavRead(String ^ filename, int % fs, int % nbit, int %
 	char* ptr_filename = (char*)Marshal::StringToHGlobalAnsi(filename).ToPointer();
 
 	double* tmp_wav_form = ::wavread(ptr_filename, ptr_fs, ptr_nbit, ptr_wav_length);
-	wav_form = gcnew array<Double>(wav_length);
-	pin_ptr<Double> ptr_wav_form = &wav_form[0];
-	memcpy(ptr_wav_form, tmp_wav_form, sizeof(double) * wav_length);
-	Marshal::FreeHGlobal(IntPtr(ptr_filename));
-	delete tmp_wav_form;
+	if (tmp_wav_form != NULL) {
+		wav_form = gcnew array<Double>(wav_length);
+		pin_ptr<Double> ptr_wav_form = &wav_form[0];
+		memcpy(ptr_wav_form, tmp_wav_form, sizeof(double) * wav_length);
+		Marshal::FreeHGlobal(IntPtr(ptr_filename));
+		delete tmp_wav_form;
+		ptr_wav_form = nullptr;
+	}
 	ptr_fs = nullptr;
 	ptr_nbit = nullptr;
 	ptr_wav_length = nullptr;
 }
 
-void WORLD4dotNet::WORLD::WavWrite(array<double>^ x, int x_length, int fs, int nbit, String ^ filename)
+void WORLD4dotNet::Utils::FileIO::WavWrite(array<double>^ x, int x_length, int fs,
+	int nbit, String ^ filename)
 {
 	pin_ptr<Double> ptr_x = &x[0];
 	char* ptr_filename = (char*)Marshal::StringToHGlobalAnsi(filename).ToPointer();
 	::wavwrite(ptr_x, x_length, fs, nbit, ptr_filename);
 	Marshal::FreeHGlobal(IntPtr(ptr_filename));
 	ptr_x = nullptr;
+}
+
+void WORLD4dotNet::Utils::MatlabFunctions::interp1(array<double>^ x, array<double>^ y, int x_length, array<double>^ xi, int xi_length, array<double>^ yi)
+{
+	pin_ptr<Double> ptr_x = &x[0];
+	pin_ptr<Double> ptr_y = &y[0];
+	pin_ptr<Double> ptr_xi = &xi[0];
+	pin_ptr<Double> ptr_yi = &yi[0];
+	::interp1(ptr_x, ptr_y, x_length, ptr_xi, xi_length, ptr_yi);
+	ptr_x = nullptr;
+	ptr_y = nullptr;
+	ptr_xi = nullptr;
+	ptr_yi = nullptr;
 }
