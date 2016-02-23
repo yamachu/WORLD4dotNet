@@ -1,0 +1,3 @@
+[submodule "WORLD4dotNet/world"]
+	path = WORLD4dotNet/world
+	url = https://github.com/mmorise/world.git

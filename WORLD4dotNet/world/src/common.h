@@ -1,10 +1,14 @@
 //-----------------------------------------------------------------------------
-// Copyright 2012-2015 Masanori Morise. All Rights Reserved.
+// Copyright 2012-2016 Masanori Morise. All Rights Reserved.
 // Author: mmorise [at] yamanashi.ac.jp (Masanori Morise)
+//-----------------------------------------------------------------------------
 #ifndef WORLD_COMMON_H_
 #define WORLD_COMMON_H_
 
 #include "./fft.h"
+#include "./macrodefinitions.h"
+
+WORLD_BEGIN_C_DECLS
 
 //-----------------------------------------------------------------------------
 // Structs on FFT
@@ -50,27 +54,30 @@ int GetSuitableFFTSize(int sample);
 // These four functions are simple max() and min() function
 // for "int" and "double" type.
 //-----------------------------------------------------------------------------
-inline int MyMax(int x, int y) {
+inline int MyMaxInt(int x, int y) {
   return x > y ? x : y;
 }
-inline double MyMax(double x, double y) {
+
+inline double MyMaxDouble(double x, double y) {
   return x > y ? x : y;
 }
-inline int MyMin(int x, int y) {
+
+inline int MyMinInt(int x, int y) {
   return x < y ? x : y;
 }
-inline double MyMin(double x, double y) {
+
+inline double MyMinDouble(double x, double y) {
   return x < y ? x : y;
 }
 
 //-----------------------------------------------------------------------------
 // These functions are used in at least two different .cpp files
 // DCCorrection is used in CheapTrick() and D4C().
-void DCCorrection(double *input, double current_f0, int fs, int fft_size,
+void DCCorrection(const double *input, double current_f0, int fs, int fft_size,
     double *output);
 
 // LinearSmoothing is used in CheapTrick() and D4C().
-void LinearSmoothing(double *input, double width, int fs, int fft_size,
+void LinearSmoothing(const double *input, double width, int fs, int fft_size,
     double *output);
 
 // NuttallWindow is used in Dio() and D4C().
@@ -89,7 +96,9 @@ void DestroyInverseRealFFT(InverseRealFFT *inverse_real_fft);
 // Minimum phase analysis (This analysis uses FFT)
 void InitializeMinimumPhaseAnalysis(int fft_size,
   MinimumPhaseAnalysis *minimum_phase);
-void GetMinimumPhaseSpectrum(MinimumPhaseAnalysis *minimum_phase);
+void GetMinimumPhaseSpectrum(const MinimumPhaseAnalysis *minimum_phase);
 void DestroyMinimumPhaseAnalysis(MinimumPhaseAnalysis *minimum_phase);
+
+WORLD_END_C_DECLS
 
 #endif  // WORLD_COMMON_H_

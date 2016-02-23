@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright 2012-2015 Masanori Morise. All Rights Reserved.
+// Copyright 2012-2016 Masanori Morise. All Rights Reserved.
 // Author: mmorise [at] yamanashi.ac.jp (Masanori Morise)
 //
 // common.cpp includes functions used in at least two files.
@@ -26,8 +26,8 @@ namespace {
 //-----------------------------------------------------------------------------
 // SetParametersForLinearSmoothing() is used in LinearSmoothing()
 //-----------------------------------------------------------------------------
-void SetParametersForLinearSmoothing(int boundary, int fft_size, int fs,
-    double width, double *power_spectrum, double *mirroring_spectrum,
+static void SetParametersForLinearSmoothing(int boundary, int fft_size, int fs,
+    double width, const double *power_spectrum, double *mirroring_spectrum,
     double *mirroring_segment, double *frequency_axis) {
   for (int i = 0; i < boundary; ++i)
     mirroring_spectrum[i] = power_spectrum[boundary - i];
@@ -46,7 +46,7 @@ void SetParametersForLinearSmoothing(int boundary, int fft_size, int fs,
     frequency_axis[i] = static_cast<double>(i) / fft_size *
     fs - width / 2.0;
 }
-}
+}  // namespace
 
 //-----------------------------------------------------------------------------
 // Fundamental functions
@@ -60,7 +60,7 @@ int GetSuitableFFTSize(int sample) {
 // general signal does not contain the DC (Direct Current) component.
 // It is used in CheapTrick() and D4C().
 //-----------------------------------------------------------------------------
-void DCCorrection(double *input, double current_f0, int fs, int fft_size,
+void DCCorrection(const double *input, double current_f0, int fs, int fft_size,
     double *output) {
   int upper_limit = 1 +
     static_cast<int>(1.2 * current_f0 * fft_size / fs);
@@ -86,7 +86,7 @@ void DCCorrection(double *input, double current_f0, int fs, int fft_size,
 // LinearSmoothing() carries out the spectral smoothing by rectangular window
 // whose length is width Hz and is used in CheapTrick() and D4C().
 //-----------------------------------------------------------------------------
-void LinearSmoothing(double *input, double width, int fs, int fft_size,
+void LinearSmoothing(const double *input, double width, int fs, int fft_size,
     double *output) {
   int boundary = static_cast<int>(width * fft_size / fs) + 1;
 
@@ -180,7 +180,7 @@ void InitializeMinimumPhaseAnalysis(int fft_size,
       FFT_FORWARD, FFT_ESTIMATE);
 }
 
-void GetMinimumPhaseSpectrum(MinimumPhaseAnalysis *minimum_phase) {
+void GetMinimumPhaseSpectrum(const MinimumPhaseAnalysis *minimum_phase) {
   // Mirroring
   for (int i = minimum_phase->fft_size / 2 + 1;
       i < minimum_phase->fft_size; ++i)

@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Copyright 2012-2015 Masanori Morise. All Rights Reserved.
+// Copyright 2012-2016 Masanori Morise. All Rights Reserved.
 // Author: mmorise [at] yamanashi.ac.jp (Masanori Morise)
 //
 // This file represents the functions about FFT (Fast Fourier Transform)
@@ -22,7 +22,7 @@ void cdft(int n, int isgn, double *a, int *ip, double *w);
 void rdft(int n, int isgn, double *a, int *ip, double *w);
 
 namespace {
-void BackwardFFT(fft_plan p) {
+static void BackwardFFT(fft_plan p) {
   if (p.c_out == NULL) {  // c2r
     p.input[0] = p.c_in[0][0];
     p.input[1] = p.c_in[p.n / 2][0];
@@ -45,7 +45,7 @@ void BackwardFFT(fft_plan p) {
   }
 }
 
-void ForwardFFT(fft_plan p) {
+static void ForwardFFT(fft_plan p) {
   if (p.c_in == NULL) {  // r2c
     for (int i = 0; i < p.n; ++i) p.input[i] = p.in[i];
     rdft(p.n, 1, p.input, p.ip, p.w);

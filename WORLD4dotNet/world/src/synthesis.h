@@ -1,9 +1,13 @@
 //-----------------------------------------------------------------------------
-// Copyright 2012-2015 Masanori Morise. All Rights Reserved.
+// Copyright 2012-2016 Masanori Morise. All Rights Reserved.
 // Author: mmorise [at] yamanashi.ac.jp (Masanori Morise)
 //-----------------------------------------------------------------------------
 #ifndef WORLD_SYNTHESIS_H_
 #define WORLD_SYNTHESIS_H_
+
+#include "./macrodefinitions.h"
+
+WORLD_BEGIN_C_DECLS
 
 //-----------------------------------------------------------------------------
 // Synthesis() synthesize the voice based on f0, spectrogram and
@@ -21,8 +25,10 @@
 // Output:
 //   y                    : Calculated speech
 //-----------------------------------------------------------------------------
-void Synthesis(double *f0, int f0_length, double **spectrogram,
-    double **aperiodicity, int fft_size, double frame_period, int fs,
+void Synthesis(const double *f0, int f0_length, double **const spectrogram,
+    double **const aperiodicity, int fft_size, double frame_period, int fs,
     int y_length, double *y);
+
+WORLD_END_C_DECLS
 
 #endif  // WORLD_SYNTHESIS_H_
