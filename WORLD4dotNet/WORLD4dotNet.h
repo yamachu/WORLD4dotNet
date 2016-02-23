@@ -1,12 +1,13 @@
 // WORLD4dotNet.h
 
 #pragma once
-#include "WORLD\cheaptrick.h"
-#include "WORLD\d4c.h"
-#include "WORLD\dio.h"
-#include "WORLD\stonemask.h"
-#include "WORLD\synthesis.h"
-#include "WORLD\matlabfunctions.h"
+#include "world\src\cheaptrick.h"
+#include "world\src\d4c.h"
+#include "world\src\dio.h"
+#include "world\src\\stonemask.h"
+#include "world\src\synthesis.h"
+#include "world\src\matlabfunctions.h"
+#include "world\test\audioio.h"
 
 using namespace System;
 using namespace System::Runtime::InteropServices;
@@ -27,6 +28,7 @@ namespace WORLD4dotNet {
 		[StructLayout(LayoutKind::Sequential)]
 		public value struct CheapTrickOption {
 			double q1;
+			double f0_floor;
 		};
 
 		[StructLayout(LayoutKind::Sequential)]
@@ -44,7 +46,7 @@ namespace WORLD4dotNet {
 			static void CheapTrick(array<Double> ^x, int x_length, int fs, array<Double> ^time_axis, array<Double> ^f0,
 				int f0_length, Options::CheapTrickOption % option, array<Double, 2> ^spectrogram);
 			static void InitializeCheapTrickOption([Out]Options::CheapTrickOption %option);
-			static int GetFFTSizeForCheapTrick(int fs);
+			static int GetFFTSizeForCheapTrick(int fs, const Options::CheapTrickOption % option);
 
 			// D4C
 			static void D4C(array<Double> ^x, int x_length, int fs, array<Double> ^time_axis, array<Double> ^f0,
@@ -73,9 +75,9 @@ namespace WORLD4dotNet {
 		{
 		public:
 			// matlabfunction
-			static void WavRead(String^ filename, [Out]int %fs, [Out]int %nbit, [Out]int %wav_length,
-				[Out]array<Double> ^%wav_form);
+			static void WavRead(String^ filename, [Out]int %fs, [Out]int %nbit, array<Double> ^x);
 			static void WavWrite(array<double> ^x, int x_length, int fs, int nbit, String ^filename);
+			static int GetAudioLength(const char *filename);
 		};
 		public ref class MatlabFunctions
 		{

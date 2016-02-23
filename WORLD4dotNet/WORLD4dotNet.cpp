@@ -49,9 +49,14 @@ void WORLD4dotNet::Core::WORLD::InitializeCheapTrickOption(Options::CheapTrickOp
 	option = (Options::CheapTrickOption)Marshal::PtrToStructure(IntPtr(&tmpOption), option.GetType());
 }
 
-int  WORLD4dotNet::Core::WORLD::GetFFTSizeForCheapTrick(int fs)
+int  WORLD4dotNet::Core::WORLD::GetFFTSizeForCheapTrick(int fs, const Options::CheapTrickOption % option)
 {
-	return ::GetFFTSizeForCheapTrick(fs);
+	IntPtr ptr_option = Marshal::AllocHGlobal(Marshal::SizeOf(option));
+	Marshal::StructureToPtr(option, ptr_option, false);
+
+	int fft_size = ::GetFFTSizeForCheapTrick(fs, (const CheapTrickOption*)ptr_option.ToPointer());
+	Marshal::FreeHGlobal(ptr_option);
+	return fft_size;
 }
 
 void WORLD4dotNet::Core::WORLD::D4C(array<Double>^ x, int x_length, int fs, 
@@ -104,7 +109,7 @@ void WORLD4dotNet::Core::WORLD::Dio(array<Double>^ x, int x_length, int fs,
 	IntPtr ptr_option = Marshal::AllocHGlobal(Marshal::SizeOf(option));
 	Marshal::StructureToPtr(option, ptr_option, false);
 
-	::Dio(ptr_x, x_length, fs, *(DioOption*)ptr_option.ToPointer(), ptr_time_axis, ptr_f0);
+	::Dio(ptr_x, x_length, fs, (const DioOption*)ptr_option.ToPointer(), ptr_time_axis, ptr_f0);
 
 	ptr_x = nullptr;
 	ptr_time_axis = nullptr;
@@ -175,26 +180,19 @@ void WORLD4dotNet::Core::WORLD::Synthesis(array<Double>^ f0, int f0_length,
 }
 
 void WORLD4dotNet::Utils::FileIO::WavRead(String ^ filename, int % fs, int % nbit,
-	int % wav_length, array<Double>^% wav_form)
+	array<Double>^ x)
 {
 	pin_ptr<int> ptr_fs = &fs;
 	pin_ptr<int> ptr_nbit = &nbit;
-	pin_ptr<int> ptr_wav_length = &wav_length;
+	pin_ptr<Double> ptr_x = &x[0];
 
 	char* ptr_filename = (char*)Marshal::StringToHGlobalAnsi(filename).ToPointer();
 
-	double* tmp_wav_form = ::wavread(ptr_filename, ptr_fs, ptr_nbit, ptr_wav_length);
-	if (tmp_wav_form != NULL) {
-		wav_form = gcnew array<Double>(wav_length);
-		pin_ptr<Double> ptr_wav_form = &wav_form[0];
-		memcpy(ptr_wav_form, tmp_wav_form, sizeof(double) * wav_length);
-		Marshal::FreeHGlobal(IntPtr(ptr_filename));
-		delete tmp_wav_form;
-		ptr_wav_form = nullptr;
-	}
+	::wavread(ptr_filename, ptr_fs, ptr_nbit, ptr_x);
 	ptr_fs = nullptr;
 	ptr_nbit = nullptr;
-	ptr_wav_length = nullptr;
+	ptr_x = nullptr;
+	Marshal::FreeHGlobal(IntPtr(ptr_filename));
 }
 
 void WORLD4dotNet::Utils::FileIO::WavWrite(array<double>^ x, int x_length, int fs,
@@ -205,6 +203,11 @@ void WORLD4dotNet::Utils::FileIO::WavWrite(array<double>^ x, int x_length, int f
 	::wavwrite(ptr_x, x_length, fs, nbit, ptr_filename);
 	Marshal::FreeHGlobal(IntPtr(ptr_filename));
 	ptr_x = nullptr;
+}
+
+int WORLD4dotNet::Utils::FileIO::GetAudioLength(const char * filename)
+{
+	return 0;
 }
 
 void WORLD4dotNet::Utils::MatlabFunctions::interp1(array<double>^ x, array<double>^ y, int x_length, array<double>^ xi, int xi_length, array<double>^ yi)

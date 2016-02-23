@@ -135,15 +135,17 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="WORLD4dotNet.h" />
-    <ClInclude Include="WORLD\cheaptrick.h" />
-    <ClInclude Include="WORLD\common.h" />
-    <ClInclude Include="WORLD\constantnumbers.h" />
-    <ClInclude Include="WORLD\d4c.h" />
-    <ClInclude Include="WORLD\dio.h" />
-    <ClInclude Include="WORLD\fft.h" />
-    <ClInclude Include="WORLD\matlabfunctions.h" />
-    <ClInclude Include="WORLD\stonemask.h" />
-    <ClInclude Include="WORLD\synthesis.h" />
+    <ClInclude Include="world\src\cheaptrick.h" />
+    <ClInclude Include="world\src\common.h" />
+    <ClInclude Include="world\src\constantnumbers.h" />
+    <ClInclude Include="world\src\d4c.h" />
+    <ClInclude Include="world\src\dio.h" />
+    <ClInclude Include="world\src\fft.h" />
+    <ClInclude Include="world\src\macrodefinitions.h" />
+    <ClInclude Include="world\src\matlabfunctions.h" />
+    <ClInclude Include="world\src\stonemask.h" />
+    <ClInclude Include="world\src\synthesis.h" />
+    <ClInclude Include="world\test\audioio.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
@@ -154,14 +156,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="WORLD4dotNet.cpp" />
-    <ClCompile Include="WORLD\cheaptrick.cpp" />
-    <ClCompile Include="WORLD\common.cpp" />
-    <ClCompile Include="WORLD\d4c.cpp" />
-    <ClCompile Include="WORLD\dio.cpp" />
-    <ClCompile Include="WORLD\fft.cpp" />
-    <ClCompile Include="WORLD\matlabfunctions.cpp" />
-    <ClCompile Include="WORLD\stonemask.cpp" />
-    <ClCompile Include="WORLD\synthesis.cpp" />
+    <ClCompile Include="world\src\cheaptrick.cpp" />
+    <ClCompile Include="world\src\common.cpp" />
+    <ClCompile Include="world\src\d4c.cpp" />
+    <ClCompile Include="world\src\dio.cpp" />
+    <ClCompile Include="world\src\fft.cpp" />
+    <ClCompile Include="world\src\matlabfunctions.cpp" />
+    <ClCompile Include="world\src\stonemask.cpp" />
+    <ClCompile Include="world\src\synthesis.cpp" />
+    <ClCompile Include="world\test\audioio.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
