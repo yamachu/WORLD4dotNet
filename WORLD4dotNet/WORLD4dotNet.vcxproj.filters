@@ -13,14 +13,17 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="WORLD">
-      <UniqueIdentifier>{f5ba6b74-fd22-4053-a92f-e968b9574e14}</UniqueIdentifier>
+    <Filter Include="World">
+      <UniqueIdentifier>{2c42e220-3736-4741-a6b6-1fd0621520c2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="WORLD\src">
-      <UniqueIdentifier>{42798588-1045-4ee9-a9b5-60af26219c45}</UniqueIdentifier>
+    <Filter Include="World\src">
+      <UniqueIdentifier>{9dd69ff4-cf7c-407d-baf3-f67fb51bcaf8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="WORLD\test">
-      <UniqueIdentifier>{92ae45e7-eee1-408f-a1fd-4c2f6d61d00e}</UniqueIdentifier>
+    <Filter Include="World\src\world">
+      <UniqueIdentifier>{067f932c-baf4-43a9-a81c-94a2c9ac8bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\test">
+      <UniqueIdentifier>{4b56d8aa-abbe-42bd-a995-bf071dabed43}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,38 +36,41 @@
     <ClInclude Include="resource.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="world\src\cheaptrick.h">
-      <Filter>WORLD\src</Filter>
+    <ClInclude Include="World\src\world\cheaptrick.h">
+      <Filter>World\src\world</Filter>
     </ClInclude>
-    <ClInclude Include="world\src\common.h">
-      <Filter>WORLD\src</Filter>
+    <ClInclude Include="World\src\world\common.h">
+      <Filter>World\src\world</Filter>
     </ClInclude>
-    <ClInclude Include="world\src\constantnumbers.h">
-      <Filter>WORLD\src</Filter>
+    <ClInclude Include="World\src\world\constantnumbers.h">
+      <Filter>World\src\world</Filter>
     </ClInclude>
-    <ClInclude Include="world\src\d4c.h">
-      <Filter>WORLD\src</Filter>
+    <ClInclude Include="World\src\world\d4c.h">
+      <Filter>World\src\world</Filter>
     </ClInclude>
-    <ClInclude Include="world\src\dio.h">
-      <Filter>WORLD\src</Filter>
+    <ClInclude Include="World\src\world\dio.h">
+      <Filter>World\src\world</Filter>
     </ClInclude>
-    <ClInclude Include="world\src\fft.h">
-      <Filter>WORLD\src</Filter>
+    <ClInclude Include="World\src\world\fft.h">
+      <Filter>World\src\world</Filter>
     </ClInclude>
-    <ClInclude Include="world\src\macrodefinitions.h">
-      <Filter>WORLD\src</Filter>
+    <ClInclude Include="World\src\world\macrodefinitions.h">
+      <Filter>World\src\world</Filter>
     </ClInclude>
-    <ClInclude Include="world\src\matlabfunctions.h">
-      <Filter>WORLD\src</Filter>
+    <ClInclude Include="World\src\world\matlabfunctions.h">
+      <Filter>World\src\world</Filter>
     </ClInclude>
-    <ClInclude Include="world\src\stonemask.h">
-      <Filter>WORLD\src</Filter>
+    <ClInclude Include="World\src\world\stonemask.h">
+      <Filter>World\src\world</Filter>
     </ClInclude>
-    <ClInclude Include="world\src\synthesis.h">
-      <Filter>WORLD\src</Filter>
+    <ClInclude Include="World\src\world\synthesis.h">
+      <Filter>World\src\world</Filter>
     </ClInclude>
-    <ClInclude Include="world\test\audioio.h">
-      <Filter>WORLD\test</Filter>
+    <ClInclude Include="World\src\world\synthesisrealtime.h">
+      <Filter>World\src\world</Filter>
+    </ClInclude>
+    <ClInclude Include="World\test\audioio.h">
+      <Filter>World\test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,32 +83,35 @@
     <ClCompile Include="Stdafx.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="world\src\cheaptrick.cpp">
-      <Filter>WORLD\src</Filter>
+    <ClCompile Include="World\src\cheaptrick.cpp">
+      <Filter>World\src</Filter>
     </ClCompile>
-    <ClCompile Include="world\src\common.cpp">
-      <Filter>WORLD\src</Filter>
+    <ClCompile Include="World\src\common.cpp">
+      <Filter>World\src</Filter>
     </ClCompile>
-    <ClCompile Include="world\src\d4c.cpp">
-      <Filter>WORLD\src</Filter>
+    <ClCompile Include="World\src\d4c.cpp">
+      <Filter>World\src</Filter>
     </ClCompile>
-    <ClCompile Include="world\src\dio.cpp">
-      <Filter>WORLD\src</Filter>
+    <ClCompile Include="World\src\dio.cpp">
+      <Filter>World\src</Filter>
     </ClCompile>
-    <ClCompile Include="world\src\fft.cpp">
-      <Filter>WORLD\src</Filter>
+    <ClCompile Include="World\src\fft.cpp">
+      <Filter>World\src</Filter>
     </ClCompile>
-    <ClCompile Include="world\src\matlabfunctions.cpp">
-      <Filter>WORLD\src</Filter>
+    <ClCompile Include="World\src\matlabfunctions.cpp">
+      <Filter>World\src</Filter>
     </ClCompile>
-    <ClCompile Include="world\src\stonemask.cpp">
-      <Filter>WORLD\src</Filter>
+    <ClCompile Include="World\src\stonemask.cpp">
+      <Filter>World\src</Filter>
     </ClCompile>
-    <ClCompile Include="world\src\synthesis.cpp">
-      <Filter>WORLD\src</Filter>
+    <ClCompile Include="World\src\synthesis.cpp">
+      <Filter>World\src</Filter>
     </ClCompile>
-    <ClCompile Include="world\test\audioio.cpp">
-      <Filter>WORLD\test</Filter>
+    <ClCompile Include="World\src\synthesisrealtime.cpp">
+      <Filter>World\src</Filter>
+    </ClCompile>
+    <ClCompile Include="World\test\audioio.cpp">
+      <Filter>World\test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

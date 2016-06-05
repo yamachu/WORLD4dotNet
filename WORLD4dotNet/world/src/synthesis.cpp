@@ -5,13 +5,13 @@
 // Voice synthesis based on f0, spectrogram and aperiodicity.
 // forward_real_fft, inverse_real_fft and minimum_phase are used to speed up.
 //-----------------------------------------------------------------------------
-#include "./synthesis.h"
+#include "world/synthesis.h"
 
 #include <math.h>
 
-#include "./common.h"
-#include "./constantnumbers.h"
-#include "./matlabfunctions.h"
+#include "world/common.h"
+#include "world/constantnumbers.h"
+#include "world/matlabfunctions.h"
 
 namespace {
 
@@ -181,8 +181,8 @@ static void GetOneFrameSegment(double current_vuv, int noise_size,
   delete[] aperiodic_response;
 }
 
-static void GetTemporalParametersForTimeBase(const double *f0, int f0_length, int fs,
-    int y_length, double frame_period, double *time_axis,
+static void GetTemporalParametersForTimeBase(const double *f0, int f0_length,
+    int fs, int y_length, double frame_period, double *time_axis,
     double *coarse_time_axis, double *coarse_f0, double *coarse_vuv) {
   for (int i = 0; i < y_length; ++i)
     time_axis[i] = i / static_cast<double>(fs);
@@ -197,7 +197,6 @@ static void GetTemporalParametersForTimeBase(const double *f0, int f0_length, in
   coarse_vuv[f0_length] = coarse_vuv[f0_length - 1] * 2 -
     coarse_vuv[f0_length - 2];
 }
-
 
 static int GetPulseLocationsForTimeBase(const double *interpolated_f0,
     const double *time_axis, int y_length, int fs, double *pulse_locations,

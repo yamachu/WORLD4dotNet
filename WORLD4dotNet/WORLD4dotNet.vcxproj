@@ -90,6 +90,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)World4dotNet\World\src;$(SolutionDir)World4dotNet\World\test;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -101,6 +102,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)World4dotNet\World\src;$(SolutionDir)World4dotNet\World\test;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -111,6 +113,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)World4dotNet\World\src;$(SolutionDir)World4dotNet\World\test;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -121,6 +124,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)World4dotNet\World\src;$(SolutionDir)World4dotNet\World\test;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
@@ -135,17 +139,18 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="WORLD4dotNet.h" />
-    <ClInclude Include="world\src\cheaptrick.h" />
-    <ClInclude Include="world\src\common.h" />
-    <ClInclude Include="world\src\constantnumbers.h" />
-    <ClInclude Include="world\src\d4c.h" />
-    <ClInclude Include="world\src\dio.h" />
-    <ClInclude Include="world\src\fft.h" />
-    <ClInclude Include="world\src\macrodefinitions.h" />
-    <ClInclude Include="world\src\matlabfunctions.h" />
-    <ClInclude Include="world\src\stonemask.h" />
-    <ClInclude Include="world\src\synthesis.h" />
-    <ClInclude Include="world\test\audioio.h" />
+    <ClInclude Include="World\src\world\cheaptrick.h" />
+    <ClInclude Include="World\src\world\common.h" />
+    <ClInclude Include="World\src\world\constantnumbers.h" />
+    <ClInclude Include="World\src\world\d4c.h" />
+    <ClInclude Include="World\src\world\dio.h" />
+    <ClInclude Include="World\src\world\fft.h" />
+    <ClInclude Include="World\src\world\macrodefinitions.h" />
+    <ClInclude Include="World\src\world\matlabfunctions.h" />
+    <ClInclude Include="World\src\world\stonemask.h" />
+    <ClInclude Include="World\src\world\synthesis.h" />
+    <ClInclude Include="World\src\world\synthesisrealtime.h" />
+    <ClInclude Include="World\test\audioio.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
@@ -156,15 +161,16 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="WORLD4dotNet.cpp" />
-    <ClCompile Include="world\src\cheaptrick.cpp" />
-    <ClCompile Include="world\src\common.cpp" />
-    <ClCompile Include="world\src\d4c.cpp" />
-    <ClCompile Include="world\src\dio.cpp" />
-    <ClCompile Include="world\src\fft.cpp" />
-    <ClCompile Include="world\src\matlabfunctions.cpp" />
-    <ClCompile Include="world\src\stonemask.cpp" />
-    <ClCompile Include="world\src\synthesis.cpp" />
-    <ClCompile Include="world\test\audioio.cpp" />
+    <ClCompile Include="World\src\cheaptrick.cpp" />
+    <ClCompile Include="World\src\common.cpp" />
+    <ClCompile Include="World\src\d4c.cpp" />
+    <ClCompile Include="World\src\dio.cpp" />
+    <ClCompile Include="World\src\fft.cpp" />
+    <ClCompile Include="World\src\matlabfunctions.cpp" />
+    <ClCompile Include="World\src\stonemask.cpp" />
+    <ClCompile Include="World\src\synthesis.cpp" />
+    <ClCompile Include="World\src\synthesisrealtime.cpp" />
+    <ClCompile Include="World\test\audioio.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

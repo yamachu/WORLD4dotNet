@@ -1,13 +1,14 @@
 // WORLD4dotNet.h
 
 #pragma once
-#include "world\src\cheaptrick.h"
-#include "world\src\d4c.h"
-#include "world\src\dio.h"
-#include "world\src\\stonemask.h"
-#include "world\src\synthesis.h"
-#include "world\src\matlabfunctions.h"
-#include "world\test\audioio.h"
+#include "world\cheaptrick.h"
+#include "world\d4c.h"
+#include "world\dio.h"
+#include "world\stonemask.h"
+#include "world\matlabfunctions.h"
+#include "world\synthesis.h"
+#include "world\synthesisrealtime.h"
+#include "audioio.h"
 
 using namespace System;
 using namespace System::Runtime::InteropServices;
@@ -35,12 +36,12 @@ namespace WORLD4dotNet {
 		public value struct D4COption {
 			double dummy;
 		};
+		// TODO: リアルタイム合成のラップ
 	}
 
 	namespace Core {
 		public ref class WORLD
 		{
-			// TODO: このクラスの、ユーザーのメソッドをここに追加してください。
 		public:
 			// CheapTrick
 			static void CheapTrick(array<Double> ^x, int x_length, int fs, array<Double> ^time_axis, array<Double> ^f0,
@@ -66,7 +67,9 @@ namespace WORLD4dotNet {
 			// Synthesis
 			static void Synthesis(array<Double> ^f0, int f0_length, array<Double, 2> ^spectrogram,
 				array<Double, 2> ^aperiodicity, int fft_size, double frame_period, int fs,
-				int y_length, array<Double> ^y);			
+				int y_length, array<Double> ^y);
+
+			// SynthesisRealtime
 		};
 	}
 

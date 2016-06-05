@@ -1,3 +1,6 @@
 [submodule "WORLD4dotNet/world"]
 	path = WORLD4dotNet/world
 	url = https://github.com/mmorise/world.git
+[submodule "WORLD4dotNet/World"]
+	path = WORLD4dotNet/World
+	url = git@github.com:mmorise/World.git

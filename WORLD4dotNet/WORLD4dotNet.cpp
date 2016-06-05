@@ -207,7 +207,7 @@ void WORLD4dotNet::Utils::FileIO::WavWrite(array<double>^ x, int x_length, int f
 
 int WORLD4dotNet::Utils::FileIO::GetAudioLength(const char * filename)
 {
-	return 0;
+	return ::GetAudioLength(filename);
 }
 
 void WORLD4dotNet::Utils::MatlabFunctions::interp1(array<double>^ x, array<double>^ y, int x_length, array<double>^ xi, int xi_length, array<double>^ yi)
