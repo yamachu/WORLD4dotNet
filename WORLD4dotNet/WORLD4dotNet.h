@@ -80,7 +80,7 @@ namespace WORLD4dotNet {
 			// matlabfunction
 			static void WavRead(String^ filename, [Out]int %fs, [Out]int %nbit, array<Double> ^x);
 			static void WavWrite(array<double> ^x, int x_length, int fs, int nbit, String ^filename);
-			static int GetAudioLength(const char *filename);
+			static int GetAudioLength(String^ filename);
 		};
 		public ref class MatlabFunctions
 		{

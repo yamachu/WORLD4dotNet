@@ -205,9 +205,12 @@ void WORLD4dotNet::Utils::FileIO::WavWrite(array<double>^ x, int x_length, int f
 	ptr_x = nullptr;
 }
 
-int WORLD4dotNet::Utils::FileIO::GetAudioLength(const char * filename)
+int WORLD4dotNet::Utils::FileIO::GetAudioLength(String ^ filename)
 {
-	return ::GetAudioLength(filename);
+	char* ptr_filename = (char*)Marshal::StringToHGlobalAnsi(filename).ToPointer();
+	int length = ::GetAudioLength(ptr_filename);
+	Marshal::FreeHGlobal(IntPtr(ptr_filename));
+	return length;
 }
 
 void WORLD4dotNet::Utils::MatlabFunctions::interp1(array<double>^ x, array<double>^ y, int x_length, array<double>^ xi, int xi_length, array<double>^ yi)
