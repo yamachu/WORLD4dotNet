@@ -1,3 +1,7 @@
+This project has died
+
+See [DotnetWorld](https://github.com/yamachu/DotnetWorld)
+
 # WORLD4dotNet
 A C++/CLI wrapper for [WORLD](https://github.com/mmorise/World) - a high-quality speech analysis, manipulation and synthesis system
 
